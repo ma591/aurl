@@ -1,0 +1,36 @@
+version: 2
+
+builds:
+  - binary: arc
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+
+archives:
+  - format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+
+brews:
+  - repository:
+      owner: ShawnPana
+      name: homebrew-tap
+    directory: Formula
+    description: "A command line tool for turning any API into a CLI command, supporting OpenAPI 3.0, OpenAPI 3.1, Swagger 2.0, and GraphQL"
+    license: MIT
+    install: |
+      bin.install "arc"
+    extra_install: |
+      man1.install "docs/arc.1" if File.exist? "docs/arc.1"
+      zsh_completion.install "docs/completions/arc.zsh" => "_arc" if File.exist? "docs/completions/arc.zsh"
+      bash_completion.install "docs/completions/arc.bash" => "arc" if File.exist? "docs/completions/arc.bash"
+      fish_completion.install "docs/completions/arc.fish" if File.exist? "docs/completions/arc.fish"
+    test: |
+      assert_match "arc", shell_output("#{bin}/arc --help")
