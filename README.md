@@ -9,8 +9,7 @@ arc auto-detects authentication, validates requests against the spec, and genera
 **Homebrew:**
 
 ```bash
-brew tap ShawnPana/tap
-brew install arc
+brew install shawnpana/tap/arc
 ```
 
 **Go:**
