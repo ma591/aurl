@@ -6,13 +6,13 @@ builds:
       - darwin
       - linux
       - windows
-    goaurlh:
+    goarch:
       - amd64
       - arm64
     ldflags:
       - -s -w
 
-aurlhives:
+archives:
   - format: tar.gz
     format_overrides:
       - goos: windows
