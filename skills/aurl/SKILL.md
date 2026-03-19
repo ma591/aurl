@@ -1,3 +1,8 @@
+---
+name: aurl
+description: Turn any API into a CLI command. Register OpenAPI or GraphQL endpoints by name, then explore and invoke them. Built for AI agents to use APIs like tool calls.
+---
+
 # aurl
 
 Turn any API spec into a CLI command. Register APIs by name, explore their endpoints, and make requests.

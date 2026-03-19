@@ -26,6 +26,16 @@ cd aurl
 make install
 ```
 
+## Agent Skill
+
+Install the aurl skill so your coding agent knows how to use it:
+
+```bash
+npx skills add ShawnPana/aurl
+```
+
+This works with Claude Code, Cursor, Codex, Copilot, and [40+ other agents](https://skills.sh). The skill teaches your agent how to register APIs, explore endpoints, and make requests with aurl.
+
 ## Quick Start
 
 Register an API, then use it:
