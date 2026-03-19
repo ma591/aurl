@@ -1,8 +1,8 @@
 # aurl
 
-A command line tool for turning any API into a CLI command, supporting OpenAPI 3.0, OpenAPI 3.1, Swagger 2.0, and GraphQL.
+A command line tool for turning any API into a CLI command, supporting OpenAPI 3.0, OpenAPI 3.1, Swagger 2.0, and GraphQL. Built for AI agents — aurl makes APIs as easy to use as tool calls.
 
-aurl auto-detects authentication, validates requests against the spec, and generates documentation from introspection.
+Register any API by name, and aurl parses the spec to auto-detect auth, validate requests, generate documentation, and provide example bodies. Agents like Claude Code, Codex, and Cursor can discover endpoints via `--help`, understand parameters and types via `describe`, and make validated requests — all without reading raw API docs.
 
 ## Install
 
