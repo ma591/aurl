@@ -1,4 +1,4 @@
-module github.com/shawnpana/arc
+module github.com/shawnpana/aurl
 
 go 1.25.0
 

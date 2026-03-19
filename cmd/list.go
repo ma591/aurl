@@ -5,7 +5,7 @@ import (
 	"os"
 	"text/tabwriter"
 
-	"github.com/shawnpana/arc/internal/config"
+	"github.com/shawnpana/aurl/internal/config"
 	"github.com/spf13/cobra"
 )
 
@@ -26,7 +26,7 @@ func runList(cmd *cobra.Command, args []string) error {
 	}
 
 	if len(apis) == 0 && len(gqls) == 0 {
-		fmt.Println("No APIs registered. Use 'arc add [name] [spec]' to register one.")
+		fmt.Println("No APIs registered. Use 'aurl add [name] [spec]' to register one.")
 		return nil
 	}
 

@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/shawnpana/arc/internal/config"
+	"github.com/shawnpana/aurl/internal/config"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func runRemove(cmd *cobra.Command, args []string) error {
 	errGQL := config.DeleteGraphQL(name)
 
 	if errAPI != nil && errGQL != nil {
-		return fmt.Errorf("%q not found. Run 'arc list' to see registered commands.", name)
+		return fmt.Errorf("%q not found. Run 'aurl list' to see registered commands.", name)
 	}
 
 	fmt.Printf("Removed %q.\n", name)

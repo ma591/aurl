@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/shawnpana/arc/internal/config"
-	"github.com/shawnpana/arc/internal/openapi"
+	"github.com/shawnpana/aurl/internal/config"
+	"github.com/shawnpana/aurl/internal/openapi"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +34,7 @@ func runAuth(cmd *cobra.Command, args []string) error {
 		// Try GraphQL
 		_, err = config.LoadGraphQL(name)
 		if err != nil {
-			return fmt.Errorf("%q not registered. Run 'arc list' to see registered commands.", name)
+			return fmt.Errorf("%q not registered. Run 'aurl list' to see registered commands.", name)
 		}
 		isGraphQL = true
 	}
@@ -61,7 +61,7 @@ func runAuth(cmd *cobra.Command, args []string) error {
 	if len(authHeaders) == 0 {
 		if isGraphQL {
 			fmt.Println("Use --header to set auth for GraphQL APIs.")
-			fmt.Printf("  Example: arc auth %s --header \"Authorization: Bearer your-token\"\n", name)
+			fmt.Printf("  Example: aurl auth %s --header \"Authorization: Bearer your-token\"\n", name)
 			return nil
 		}
 
@@ -84,7 +84,7 @@ func runAuth(cmd *cobra.Command, args []string) error {
 			}
 		} else {
 			fmt.Println("No securitySchemes found in spec. Use --header to set auth manually.")
-			fmt.Printf("  Example: arc auth %s --header \"Authorization: Bearer your-token\"\n", name)
+			fmt.Printf("  Example: aurl auth %s --header \"Authorization: Bearer your-token\"\n", name)
 			return nil
 		}
 	}

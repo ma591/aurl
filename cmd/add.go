@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shawnpana/arc/internal/config"
-	"github.com/shawnpana/arc/internal/graphql"
-	"github.com/shawnpana/arc/internal/openapi"
+	"github.com/shawnpana/aurl/internal/config"
+	"github.com/shawnpana/aurl/internal/graphql"
+	"github.com/shawnpana/aurl/internal/openapi"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +24,7 @@ var addGraphQL bool
 var addCmd = &cobra.Command{
 	Use:   "add [name] [spec or endpoint]",
 	Short: "Register an API as a CLI command",
-	Long:  "Register an OpenAPI spec or GraphQL endpoint as a named CLI command.\n\nExamples:\n  arc add petstore https://petstore.swagger.io/openapi.json\n  arc add --graphql countries https://countries.trevorblades.com/graphql",
+	Long:  "Register an OpenAPI spec or GraphQL endpoint as a named CLI command.\n\nExamples:\n  aurl add petstore https://petstore.swagger.io/openapi.json\n  aurl add --graphql countries https://countries.trevorblades.com/graphql",
 	Args:  cobra.ExactArgs(2),
 	RunE:  runAdd,
 }
@@ -138,7 +138,7 @@ func runAdd(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	fmt.Printf("\nDone. Run `arc %s --help` to see available endpoints.\n", name)
+	fmt.Printf("\nDone. Run `aurl %s --help` to see available endpoints.\n", name)
 	return nil
 }
 
@@ -255,7 +255,7 @@ func runAddGraphQL(name, endpoint string) error {
 		}
 	}
 
-	fmt.Printf("\nDone. Run `arc %s --help` to see available queries and mutations.\n", name)
+	fmt.Printf("\nDone. Run `aurl %s --help` to see available queries and mutations.\n", name)
 	return nil
 }
 

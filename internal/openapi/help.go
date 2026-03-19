@@ -177,7 +177,7 @@ func FormatHelp(spec *Spec) string {
 	}
 
 	b.WriteString("\n(*) = required\n")
-	b.WriteString("Tip: arc [name] describe METHOD /path for detailed endpoint docs\n")
+	b.WriteString("Tip: aurl [name] describe METHOD /path for detailed endpoint docs\n")
 	return b.String()
 }
 
