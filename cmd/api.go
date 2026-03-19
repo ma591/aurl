@@ -8,9 +8,9 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/shawnpana/arc/internal/client"
-	"github.com/shawnpana/arc/internal/config"
-	"github.com/shawnpana/arc/internal/openapi"
+	"github.com/shawnpana/aurl/internal/client"
+	"github.com/shawnpana/aurl/internal/config"
+	"github.com/shawnpana/aurl/internal/openapi"
 	"github.com/spf13/cobra"
 )
 
@@ -32,7 +32,7 @@ func runAPI(name, specPath, authPath string, args []string) error {
 	// Load and parse spec
 	data, err := os.ReadFile(specPath)
 	if err != nil {
-		return fmt.Errorf("API %q not found. Run 'arc list' to see registered APIs.", name)
+		return fmt.Errorf("API %q not found. Run 'aurl list' to see registered APIs.", name)
 	}
 
 	spec, err := openapi.Parse(data)
@@ -49,7 +49,7 @@ func runAPI(name, specPath, authPath string, args []string) error {
 	// Handle "describe METHOD /path"
 	if args[0] == "describe" {
 		if len(args) < 3 {
-			return fmt.Errorf("Usage: arc %s describe METHOD /path", name)
+			return fmt.Errorf("Usage: aurl %s describe METHOD /path", name)
 		}
 		fmt.Print(openapi.FormatDescribe(spec, args[1], args[2]))
 		return nil
@@ -69,7 +69,7 @@ func runAPI(name, specPath, authPath string, args []string) error {
 	// Expect: METHOD path [body]
 	if len(args) < 2 {
 		fmt.Print(openapi.FormatHelp(spec))
-		return fmt.Errorf("\nUsage: arc %s [METHOD] [path] [body]", name)
+		return fmt.Errorf("\nUsage: aurl %s [METHOD] [path] [body]", name)
 	}
 
 	method := strings.ToUpper(args[0])
@@ -127,7 +127,7 @@ func runAPI(name, specPath, authPath string, args []string) error {
 		baseURL = auth.BaseURLOverride
 	}
 	if baseURL == "" {
-		return fmt.Errorf("no base URL found in spec. Use 'arc auth %s --base-url URL' or re-add with --base-url", name)
+		return fmt.Errorf("no base URL found in spec. Use 'aurl auth %s --base-url URL' or re-add with --base-url", name)
 	}
 
 	// Strip trailing slash from base URL

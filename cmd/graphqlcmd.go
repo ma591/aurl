@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/shawnpana/arc/internal/client"
-	"github.com/shawnpana/arc/internal/config"
-	"github.com/shawnpana/arc/internal/graphql"
+	"github.com/shawnpana/aurl/internal/client"
+	"github.com/shawnpana/aurl/internal/config"
+	"github.com/shawnpana/aurl/internal/graphql"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +30,7 @@ func runGraphQL(name, configPath, authPath string, args []string) error {
 	// Load config
 	data, err := os.ReadFile(configPath)
 	if err != nil {
-		return fmt.Errorf("GraphQL API %q not found. Run 'arc list' to see registered APIs.", name)
+		return fmt.Errorf("GraphQL API %q not found. Run 'aurl list' to see registered APIs.", name)
 	}
 
 	var stored map[string]any
@@ -55,7 +55,7 @@ func runGraphQL(name, configPath, authPath string, args []string) error {
 	// Describe
 	if args[0] == "describe" {
 		if len(args) < 2 {
-			return fmt.Errorf("Usage: arc %s describe [query|mutation|type]", name)
+			return fmt.Errorf("Usage: aurl %s describe [query|mutation|type]", name)
 		}
 		fmt.Print(graphql.FormatDescribe(schema, args[1]))
 		return nil

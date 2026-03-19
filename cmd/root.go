@@ -6,12 +6,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/shawnpana/arc/internal/config"
+	"github.com/shawnpana/aurl/internal/config"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "arc",
+	Use:   "aurl",
 	Short: "Turn any API spec into a CLI command",
 	Long:  "Register OpenAPI specs or GraphQL endpoints as named subcommands and invoke them from the terminal.",
 }

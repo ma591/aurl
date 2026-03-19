@@ -67,7 +67,7 @@ func FormatHelp(schema *Schema) string {
 	}
 
 	b.WriteString("\n(*) = required\n")
-	b.WriteString("Tip: arc [name] describe [field] for detailed docs\n")
+	b.WriteString("Tip: aurl [name] describe [field] for detailed docs\n")
 	return b.String()
 }
 

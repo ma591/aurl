@@ -1,24 +1,24 @@
 version: 2
 
 builds:
-  - binary: arc
+  - binary: aurl
     goos:
       - darwin
       - linux
       - windows
-    goarch:
+    goaurlh:
       - amd64
       - arm64
     ldflags:
       - -s -w
 
-archives:
+aurlhives:
   - format: tar.gz
     format_overrides:
       - goos: windows
         format: zip
     files:
-      - docs/arc.1
+      - docs/aurl.1
       - docs/completions/*
       - LICENSE
       - README.md
@@ -32,10 +32,10 @@ brews:
     description: "A command line tool for turning any API into a CLI command, supporting OpenAPI 3.0, OpenAPI 3.1, Swagger 2.0, and GraphQL"
     license: MIT
     install: |
-      bin.install "arc"
-      man1.install "docs/arc.1"
-      zsh_completion.install "docs/completions/arc.zsh" => "_arc"
-      bash_completion.install "docs/completions/arc.bash" => "arc"
-      fish_completion.install "docs/completions/arc.fish"
+      bin.install "aurl"
+      man1.install "docs/aurl.1"
+      zsh_completion.install "docs/completions/aurl.zsh" => "_aurl"
+      bash_completion.install "docs/completions/aurl.bash" => "aurl"
+      fish_completion.install "docs/completions/aurl.fish"
     test: |
-      assert_match "arc", shell_output("#{bin}/arc --help")
+      assert_match "aurl", shell_output("#{bin}/aurl --help")
